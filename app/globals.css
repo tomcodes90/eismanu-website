@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand-red:          #E8352A;
+  --color-brand-teal:         #1A9BAF;
+  --color-brand-teal-dark:    #117A8A;
+  --color-brand-yellow:       #F9C500;
+  --color-brand-pink:         #F25C8A;
+  --color-brand-green:        #3BAA6E;
+  --color-brand-green-dark:   #1F7A47;
+  --color-brand-dark:         #1C1C2E;
+  --color-brand-mid:          #4A4A6A;
+  --color-brand-teal-light:   #E3F6F9;
+  --color-brand-yellow-light: #FEF7D0;
+  --color-brand-pink-light:   #FDE8EF;
+  --color-brand-red-light:    #FDECEA;
+  --color-brand-green-light:  #E5F7EE;
+
+  --font-kaushan: var(--font-kaushan);
+  --font-nunito:  var(--font-nunito);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-teal-dark rounded-sm;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-red text-white font-kaushan text-lg leading-none transition-colors hover:bg-brand-red/90;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-white text-white font-kaushan text-lg leading-none transition-colors hover:bg-white/10;
+  }
+
+  .btn-teal {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-white font-kaushan text-lg leading-none transition-opacity hover:opacity-90;
+    background-image: url('/images/button_teal.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .section-label {
+    @apply font-kaushan text-xl mb-2 block;
+  }
+
+  .section-title {
+    @apply font-kaushan text-4xl text-brand-dark leading-tight;
+  }
+
+  .section-sub {
+    @apply font-nunito text-base text-brand-mid max-w-xl leading-relaxed;
+  }
+
+  .card-brand {
+    @apply bg-white rounded-2xl border-2 border-gray-100 overflow-hidden;
+  }
+
+  .flavor-tag {
+    @apply inline-block px-2 py-0.5 rounded-full font-nunito text-xs;
+  }
 }
