@@ -53,10 +53,7 @@ const schema = z.object({
     .int()
     .min(1, "Mindestens 1 Person")
     .max(20, "Maximal 20 Personen"),
-  seatingPreference: z.preprocess(
-    (v) => (v === "" ? undefined : v),
-    z.enum(["TERRACE", "INSIDE", "OTHER"]).optional(),
-  ),
+  seatingPreference: z.enum(["TERRACE", "INSIDE", "OTHER"]).optional(),
   notes: z.string().max(500, "Maximal 500 Zeichen").optional(),
 });
 
@@ -425,7 +422,7 @@ export function ReservationForm() {
         <div className="relative">
           <select
             id="seatingPreference"
-            {...register("seatingPreference")}
+            {...register("seatingPreference", { setValueAs: (v) => v === "" ? undefined : v })}
             className="w-full appearance-none rounded-xl border border-gray-200 pl-4 pr-10 py-2.5 font-nunito text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal bg-white"
             defaultValue=""
           >
